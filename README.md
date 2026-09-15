@@ -6,7 +6,7 @@
 
 *On GitHub, use ⌘-click (Mac) or Ctrl-click (Windows/Linux) to open it in a new tab.*
 
-A small, free video player for files on your computer. Pick a video, make yourself comfortable, and let your browser do the playing.
+A small, free video player for files on your phone, tablet, or computer. Local Cinema is a **Progressive Web App (PWA)**: you can install it from your browser, open it like an app, and play local videos offline after the initial setup.
 
 **Install on your device · Watch offline · No video uploads**
 
@@ -14,7 +14,7 @@ A small, free video player for files on your computer. Pick a video, make yourse
 
 ## On the menu
 
-[The origin story](#why-this-exists) · [Features](#features) · [Get started](#getting-started) · [Controls](#playback-controls) · [Shortcuts](#keyboard-shortcuts) · [Watch history](#watch-history) · [Privacy](#privacy-and-offline-use) · [Compatibility](#video-compatibility) · [Credits](#credits)
+[The origin story](#why-this-exists) · [Features](#features) · [Get started](#getting-started) · [Play offline](#play-offline) · [Controls](#playback-controls) · [Shortcuts](#keyboard-shortcuts) · [Watch history](#watch-history) · [Privacy](#privacy-and-offline-use) · [Compatibility](#video-compatibility) · [Credits](#credits)
 
 ## Why this exists
 
@@ -69,13 +69,27 @@ The phone and tablet layouts group playback controls into rows that fit the play
 
 Installation options depend on your browser and OS. You can always continue playing in the browser.
 
-Open the app online once and wait for **Ready for offline use** on the welcome screen or in the history sidebar. After that, launch it from your device to play local videos offline. The player caches its interface and app icons; it does not copy or upload your videos. Choose the video and any subtitles again after reopening. Clearing site data or browser storage eviction can remove the offline copy; reconnect to set it up again.
+Installation references: [Apple’s iPhone guide](https://support.apple.com/guide/iphone/iphea86e5236/ios) and [Google’s Android guide](https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid).
+
+### Play offline
+
+**Install the PWA once, then bring your own videos—even without an internet connection.**
+
+1. While online, visit **[local-cinema.online](https://local-cinema.online/)** and [install it on your device](#install-on-your-device).
+2. Open the app online and wait for **Ready for offline use** on the welcome screen or in the history sidebar.
+3. When offline, launch **Local Cinema** from your home screen, Dock, or app launcher.
+4. Tap **Open video** or **Choose a video** and select a file saved on your device. Press **Play** if needed.
+5. Use playback controls, change speed, or load local `.srt` / `.vtt` subtitles. Fullscreen and picture-in-picture work where your browser supports them.
+
+Your videos stay on your device. The app saves its interface for offline use; it does not download, copy, or upload your movies. Make sure your video and subtitle files are available locally, rather than only in cloud storage. Supported video formats depend on your browser and device.
+
+Watch history saves resume positions. After reopening the app, select the video and any subtitles again; installing the PWA does not give it permanent access to your files. Clearing site data or automatic browser storage cleanup can remove the offline app copy—open it online again to restore it.
 
 Updates download when you open the app online. When **Update ready** appears, close all Local Cinema tabs and app windows, then reopen. Updates never force a reload during playback.
 
-Installation references: [Apple’s iPhone guide](https://support.apple.com/guide/iphone/iphea86e5236/ios) and [Google’s Android guide](https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid).
-
 ### Download for offline use
+
+You can also use a standalone HTML copy without installing the PWA:
 
 1. Download [`index.html`](index.html).
 2. Open it in a browser with JavaScript enabled.
