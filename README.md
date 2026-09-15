@@ -39,7 +39,7 @@ Dedicated media players still have their place, especially for formats a browser
 ## Features
 
 - Open a video from your device or drag and drop it onto the player.
-- Use custom play, pause, seek, skip, volume, and mute controls.
+- Use custom play, pause, seek, skip, volume, and mute controls. Controls fade away after five seconds of inactivity during playback and return when you move or use the pointer over the player.
 - Load `.srt` or `.vtt` subtitle files, then turn captions on or off while watching.
 - Adjust playback speed from 0.5× to 2×.
 - See brief rewind and fast-forward feedback over the video.
@@ -67,7 +67,7 @@ No install, package manager, or local web server is required.
 
 | Control | Action |
 | --- | --- |
-| Play / pause | Start or pause playback. Clicking the video also toggles playback. |
+| Play / pause | Start or pause playback. Clicking the video also toggles playback. Controls fade after five seconds of inactivity while playing; move the pointer over the player to show them again. They remain visible while paused. |
 | Rewind / forward | Skip 10 seconds backward or forward. |
 | Timeline | Seek to a point in the video. |
 | Load subtitles | Choose a `.srt` or `.vtt` file for the current video. SRT files are converted in memory for browser playback. |
