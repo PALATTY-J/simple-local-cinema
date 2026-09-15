@@ -40,6 +40,7 @@ Dedicated media players still have their place, especially for formats a browser
 
 - Open a video from your device or drag and drop it onto the player.
 - Use custom play, pause, seek, skip, volume, and mute controls.
+- Load `.srt` or `.vtt` subtitle files, then turn captions on or off while watching.
 - Adjust playback speed from 0.5× to 2×.
 - See brief rewind and fast-forward feedback over the video.
 - Keep a watch history with saved resume positions in this browser.
@@ -69,6 +70,8 @@ No install, package manager, or local web server is required.
 | Play / pause | Start or pause playback. Clicking the video also toggles playback. |
 | Rewind / forward | Skip 10 seconds backward or forward. |
 | Timeline | Seek to a point in the video. |
+| Load subtitles | Choose a `.srt` or `.vtt` file for the current video. SRT files are converted in memory for browser playback. |
+| Captions menu | Turn the loaded subtitles on or off. Load another subtitle file to replace them. |
 | Speaker / volume | Toggle mute or adjust volume. |
 | Speed | Choose 0.5×, 0.75×, 1×, 1.25×, 1.5×, or 2×. |
 | Picture-in-picture | Open a floating video window when supported. |
@@ -103,13 +106,15 @@ History belongs to the website address and browser profile you used. It will not
 
 Videos are played from local browser object URLs. Local Cinema does not upload, modify, or store video contents. It saves only history details such as the file name, size, last-modified time, duration, and resume position in browser local storage. It does not store the original file path.
 
+Subtitle files are read locally and attached to the video for playback; they are not uploaded or saved in watch history. Select them again after reloading the page.
+
 All player code, styles, and icons are included in `index.html`. There are no external player libraries, remote fonts, analytics, or tracking scripts. The hosted page needs a connection to load; a downloaded copy of `index.html` can be opened offline.
 
 ## Video compatibility
 
 Playback depends on the codecs supported by your browser and operating system. **MP4 with H.264 video and AAC audio** and **WebM** are good formats to try. A file picker may allow other formats such as MKV, AVI, and MOV, but the browser may not decode them. Changing a file extension does not convert its format.
 
-Local Cinema does not convert video, add codecs, load subtitle files, or stream internet video. Picture-in-picture and fullscreen availability also depends on the browser.
+Local Cinema does not convert video, add codecs, or stream internet video. It supports text subtitles in SRT and WebVTT (`.vtt`) formats; subtitle appearance and cue support depend on the browser. Picture-in-picture and fullscreen availability also depends on the browser.
 
 ## Credits
 
