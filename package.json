@@ -1,0 +1,15 @@
+{
+  "name": "local-cinema",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A local video player in a single HTML file.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name local-cinema --branch main",
+    "cf:login": "wrangler login",
+    "test:pwa": "npm run build && node scripts/test-pwa.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.131.2"
+  }
+}

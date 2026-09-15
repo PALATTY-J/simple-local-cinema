@@ -1,0 +1,26 @@
+# Dependencies and generated deployment output
+node_modules/
+dist/
+
+# Local Cloudflare state, configuration, and credentials
+.wrangler/
+wrangler.toml
+wrangler.json
+wrangler.jsonc
+.dev.vars
+.dev.vars.*
+
+# Optional local analytics injection
+/analytics.local.html
+
+# Site-specific search metadata and promotional copy
+/robots.txt
+/sitemap.xml
+/post.txt
+
+# Local environment and editor files
+.env
+.env.*
+.vscode/
+.DS_Store
+npm-debug.log*

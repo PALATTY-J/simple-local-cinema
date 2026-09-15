@@ -1,27 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Local Cinema — Free Local Video Player for Your Browser</title>
-<meta name="description" content="Play local MP4 and WebM videos in your browser with custom controls, picture-in-picture and saved history. Free, no installs or uploads. Works offline.">
+<meta name="description" content="Play local MP4 and WebM videos in your browser with custom controls, picture-in-picture and saved history. Free, no uploads. Install on your device for offline playback.">
 <link rel="canonical" href="https://local-cinema.online/">
 <meta name="robots" content="index, follow">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Local Cinema">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#111216">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Local Cinema">
 <meta property="og:title" content="Local Cinema — Free Local Video Player">
-<meta property="og:description" content="Watch videos from your computer in your browser. Custom controls, SRT and VTT subtitles, picture-in-picture and saved history, with no uploads or installation.">
+<meta property="og:description" content="Watch videos from your computer in your browser. Custom controls, SRT and VTT subtitles, picture-in-picture and saved history, with no uploads. Install on your device and watch offline.">
 <meta property="og:url" content="https://local-cinema.online/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Local Cinema — Free Local Video Player">
-<meta name="twitter:description" content="Play local videos in your browser. No installs or uploads. Download the single HTML file for offline playback.">
+<meta name="twitter:description" content="Play local videos in your browser. No uploads. Install Local Cinema on your device for offline playback.">
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2048%2048%22%3E%3C%21--%20Icon%20from%20Arcticons%20by%20Donnnno%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby-sa%2F4.0%2F%20--%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23c2b0ff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M30.684%2016.237c-.165%204.342%204.81%205.31%206.585%204.095c1.775-1.216%203.11-6.654-1.51-7.992c1.37-3.846-2.138-6.299-5.57-4.758c-3.165-4.738-6.726-3.42-8.122-.033%22%2F%3E%3Cpath%20d%3D%22M23.96%2012.871c1.059-2.521-.392-6.407-4.964-5.202c-3.836-4.105-9.246.024-6.45%204.868c-4.709.622-4.52%208.44.017%208.469h22.303L32.571%2043.5h-16.71l-2.168-22.143m6.824-.279l.63%2022.397m7.143-22.461l-.984%2022.405%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <style>
 :root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#111216;color:#ececf1;--muted:#8c8c9e;--accent:#c2b0ff}*{box-sizing:border-box}body{margin:0;height:100svh;overflow:hidden}button,input,select{font:inherit}button{cursor:pointer;border:0;color:inherit;background:none;border-radius:9px}button:hover{background:#ffffff0d}button:disabled{opacity:.35;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:4px}[hidden]{display:none!important}.app{height:100%;display:grid;grid-template-rows:72px minmax(0,1fr)}header{display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid #ffffff0b}.brand{font-size:18px;font-weight:700;letter-spacing:-.6px}.brand span{display:inline-grid;place-items:center;background:var(--accent);color:#24183d;width:30px;height:30px;border-radius:9px;margin-right:10px;font-size:13px}.header-actions{display:flex;gap:10px;align-items:center}.primary{background:var(--accent);color:#251b3e;padding:11px 17px;font-weight:650}.primary:hover{background:#d5c7ff}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 280px;min-height:0}.viewer{min-width:0;min-height:0;padding:26px;display:flex;flex-direction:column;gap:18px}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--accent);font-weight:700}.title-row{min-width:0}h1{font-size:20px;letter-spacing:-.6px;margin:7px 0 5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#details{font-size:12px;color:var(--muted)}.theater{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;border:1px solid #ffffff10;border-radius:15px;overflow:hidden;background:#08090c}.screen{flex:1;min-height:0;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}.screen.dragging{box-shadow:inset 0 0 0 3px var(--accent)}video{width:100%;height:100%;object-fit:contain;min-height:0}.empty{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:16px;background:radial-gradient(ellipse,#25203380,transparent 70%)}.empty-icon{font-size:24px;color:var(--accent);margin-bottom:15px}h2{font-size:19px;margin:0 0 8px}.empty p{font-size:13px;color:var(--muted);margin:0 0 22px}.empty button{justify-self:center}.controls{background:#19191f;padding:14px 18px 12px;flex-shrink:0}.timeline{display:flex;align-items:center;gap:12px}.time{font-size:11px;font-variant-numeric:tabular-nums;color:#b4b3c3;min-width:40px}.time:last-child{text-align:right}input[type=range]{accent-color:var(--accent);height:16px;cursor:pointer;min-width:0}#seek{flex:1;width:100%}.control-row{display:flex;align-items:center;gap:9px;margin-top:9px}.icon{height:36px;min-width:36px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;padding:7px}.icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}#play{background:var(--accent);color:#211832}.volume{display:flex;align-items:center;gap:2px;margin-left:8px}#volume{width:75px}.spacer{flex:1}select{background:#24242d;border:1px solid #ffffff10;color:#ddd8eb;border-radius:7px;padding:6px;font-size:12px}.foot{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:11px;color:var(--muted);min-height:18px}#status{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#status.error{color:#ffa6a6}.shortcuts{white-space:nowrap}aside{min-height:0;border-left:1px solid #ffffff0b;background:#14151a;display:flex;flex-direction:column;padding:25px 16px 16px}.sidebar-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.sidebar-heading h2{font-size:14px;margin:0}.sidebar-heading button{font-size:11px;color:var(--muted);padding:8px}.sidebar-caption{font-size:11px;color:var(--muted);margin:0 0 22px}#history{min-height:0;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:7px;scrollbar-width:thin}.history-empty{font-size:12px;color:var(--muted);line-height:1.8;border:1px dashed #ffffff13;border-radius:10px;padding:20px;text-align:center}.history-item{display:flex;gap:11px;align-items:center;text-align:left;padding:12px;width:100%;border:1px solid transparent;flex-shrink:0}.history-item.active{background:#c2b0ff0d;border-color:#c2b0ff30}.thumb{width:38px;height:42px;border-radius:7px;background:#25232f;display:grid;place-items:center;color:var(--accent);flex-shrink:0;font-size:12px}.entry{min-width:0;flex:1}.entry strong{display:block;font-size:12px;font-weight:550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.entry small{display:block;color:var(--muted);font-size:10px;margin-top:7px}.sidebar-footer{border-top:1px solid #ffffff0b;padding-top:15px;margin-top:15px;font-size:10px;color:var(--muted);line-height:1.7}#historyToggle{padding:10px;font-size:12px}.app.hide-history .workspace{grid-template-columns:minmax(0,1fr)}.app.hide-history aside{display:none}.theater:fullscreen{border:0;border-radius:0;width:100%;height:100%;background:#000}
-@media(max-width:760px){header{padding:0 16px}.app{grid-template-rows:60px minmax(0,1fr)}.viewer{padding:16px;gap:12px}.workspace{grid-template-columns:minmax(0,1fr)}aside{position:fixed;right:0;top:60px;bottom:0;width:min(280px,85vw);z-index:5;box-shadow:-20px 0 50px #0008}.shortcuts{display:none}.controls{padding:10px}.control-row{gap:3px}.volume{margin-left:0}#volume{width:48px}.brand{font-size:15px}.primary{padding:10px 12px}h1{font-size:17px}}
-@media(max-height:480px){.app{grid-template-rows:48px minmax(0,1fr)}.viewer{padding:10px;gap:7px}.title-row,.foot,.empty p,.empty-icon{display:none}aside{padding-top:10px}.controls{padding:6px 12px}.control-row{margin-top:0}aside{top:48px}}
+
+
 #open{padding-block:7px}
 /* Spacious controls with filled Material icons; line icons retain their strokes. */
 .controls{position:absolute;z-index:2;right:0;bottom:0;left:0;padding:16px 22px 18px;transition:opacity .24s ease,transform .24s ease}
@@ -33,9 +39,9 @@
 .icon svg.material-icon{width:32px;height:32px;fill:currentColor;stroke:none}
 .volume{gap:6px;margin-left:10px}
 .control-row select{min-height:38px;padding:8px}
-@media(max-width:760px){.controls{padding:12px}.control-row{gap:6px;margin-top:10px}.volume{margin-left:0;gap:2px}}
-@media(max-width:420px){.control-row{gap:5px}.volume{order:2;width:100%;justify-content:flex-end}#volume{width:90px}}
-@media(max-height:480px){.controls{padding:8px 12px}.control-row{margin-top:6px}}
+
+
+
 /* Custom speed selector with a compact keyboard focus indicator. */
 #speed{
   appearance:none;
@@ -72,6 +78,87 @@
 .seek-feedback span{font-size:12px;font-weight:600;white-space:nowrap}
 @media(prefers-reduced-motion:reduce){.seek-feedback{transition:none}}
 dialog{width:min(440px,calc(100% - 32px));max-height:calc(100svh - 32px);overflow:auto;background:#202029;color:#ececf1;border:1px solid #c2b0ff44;border-radius:18px;padding:26px;box-shadow:0 20px 80px #0008}dialog::backdrop{background:#0009}dialog p{font-size:14px;line-height:1.7;color:#b5b1c4}dialog strong{overflow-wrap:anywhere}.dialog-actions{display:flex;justify-content:flex-end;gap:12px}.dialog-actions button{padding:10px 14px}
+.install-link{margin-top:12px;padding:10px;color:var(--accent);font-size:13px}.sidebar-footer button{color:var(--accent);padding:8px 0}#offlineStatus{display:block;margin-top:8px}
+/* Keep the installed player clear of notches and home indicators. */
+body{height:100dvh;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.brand{display:flex;align-items:center;gap:8px;white-space:nowrap}.brand>svg{flex:none}
+.empty{overflow:auto}.theater:has(.empty:not([hidden])) .controls{display:none}
+#mobileReady{display:block;margin-top:8px;font-size:11px;color:var(--muted)}
+
+
+
+/* Controls stay grouped as the player width changes. */
+:root{--header-height:72px}
+.app{grid-template-rows:var(--header-height) minmax(0,1fr)}
+.workspace{position:relative;min-width:0}
+.transport-controls,.playback-options{display:flex;align-items:center;gap:8px;min-width:0}
+.control-row{justify-content:space-between;gap:10px}
+.volume{margin-left:0;min-width:0}.playback-options{flex-wrap:wrap}
+.screen{min-width:0}video{position:absolute;inset:0}
+.viewer{container-type:inline-size}
+.empty{align-content:safe center}.empty>*{min-width:0;max-width:100%}
+#details{display:block;overflow-wrap:anywhere}.title-row,.foot{flex-shrink:0}
+.brand{min-width:0}.header-actions{flex-shrink:0}
+.sidebar-heading{flex-shrink:0}.sidebar-close{display:none}
+@container(max-width:700px){
+ .control-row{gap:8px}.transport-controls,.playback-options{flex:1 0 100%;justify-content:space-between}
+ .volume{margin-left:auto}.controls{padding:10px 12px}.shortcuts{display:none}
+}
+@media(max-width:1100px){
+ :root{--header-height:60px}
+ header{padding-inline:16px;gap:8px}.workspace{grid-template-columns:minmax(0,1fr)}
+ .viewer{padding:16px;gap:12px}.shortcuts{display:none}
+ aside{position:absolute;inset:0 0 0 auto;width:min(340px,100%);z-index:5;overflow-y:auto;box-shadow:-20px 0 50px #0008;padding:16px}
+ #history{flex:1 0 auto;overflow:visible}.sidebar-footer{flex-shrink:0}
+ .sidebar-close{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;font-size:22px}
+ .sidebar-heading{gap:8px}.sidebar-heading h2{margin-right:auto}
+}
+@media(max-width:600px){
+ header{padding-inline:10px}.header-actions{gap:2px}.brand{font-size:15px;gap:4px}.brand>svg{width:28px;height:28px}
+ .viewer{padding:10px;gap:10px}h1{font-size:17px}.eyebrow{font-size:9px}
+ #details{font-size:11px;line-height:1.5}.empty{padding:16px}.empty h2{font-size:17px}.empty p{line-height:1.5}
+ .controls{padding:8px}.control-row{margin-top:6px}.timeline{gap:6px}
+ .transport-controls{gap:4px}.playback-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+ .playback-options .icon{width:100%}#speed,#captions{width:100%;min-width:0;padding-inline:4px;font-size:12px}
+ #speed{padding-right:16px;background-position:right 2px center;background-size:12px}
+ #volume{width:clamp(44px,15vw,90px)}.volume{gap:2px}
+ #open,#historyToggle,.install-link,.dialog-actions button,.sidebar-footer button{min-height:44px}
+ .dialog-actions{flex-wrap:wrap}dialog{padding:20px}
+}
+@media(pointer:coarse),(max-width:600px){
+ /* Reserve space for touch controls so they never cover the video or captions. */
+ .controls{position:relative;inset:auto;flex-shrink:0;transition:none}
+ .theater.controls-hidden{cursor:auto}.theater.controls-hidden .controls{opacity:1;transform:none;pointer-events:auto}
+ .control-row select,#speed,#captions{min-height:44px}input[type=range]{min-height:28px}
+ .screen{min-height:100px}.viewer{overflow-y:auto}.theater{flex:1 0 280px}
+ .theater:has(.empty:not([hidden])){min-height:260px}
+}
+@media(max-width:360px){
+ .brand{font-size:13px}#open{font-size:12px;padding-inline:8px}#historyToggle{padding-inline:6px}
+}
+@media(max-height:500px){
+ :root{--header-height:48px}.viewer{padding:6px;gap:6px}.title-row,.foot,.empty-icon,.empty p{display:none}
+ .empty{padding:8px}.empty h2{margin-bottom:4px}.empty .install-link{margin-top:0;padding:6px;min-height:36px}
+ #mobileReady{margin-top:2px}.controls{padding:4px 8px}.control-row{margin-top:2px}
+ .theater{flex-basis:210px}.theater:has(.empty:not([hidden])){min-height:180px}
+}
+/* Let the document grow on phones and tablets instead of clipping the player. */
+@media(max-width:1100px){
+ body{height:auto;min-height:100dvh;overflow-x:hidden;overflow-y:auto}
+ .app{height:auto;min-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));grid-template-rows:var(--header-height) 1fr}
+ .viewer{overflow:visible;min-height:0}
+ .theater{flex:1 0 auto;min-height:0}
+ .screen{flex:1 0 auto;min-height:clamp(200px,45svh,480px)}
+ .controls{position:relative;inset:auto;flex-shrink:0;transition:none}
+ .theater.controls-hidden .controls{opacity:1;transform:none;pointer-events:auto}
+ .theater.controls-hidden{cursor:auto}
+ .empty{position:relative;inset:auto;width:100%;min-height:300px;overflow:visible;padding:20px}
+ .title-row,.foot{display:block}.empty p,.empty-icon{display:block}
+ #status{white-space:normal;overflow-wrap:anywhere}
+ aside{position:fixed;inset:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) auto;max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));overscroll-behavior:contain}
+ .theater:fullscreen{min-height:0;overflow-y:auto}
+ .theater:fullscreen .screen{min-height:0;flex:1 1 auto}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -105,6 +192,7 @@ dialog{width:min(440px,calc(100% - 32px));max-height:calc(100svh - 32px);overflo
         "Playback speed and volume controls",
         "Saved history with resume positions",
         "Fullscreen and picture-in-picture where supported",
+        "Install on your device for offline playback",
         "Offline playback from a downloaded HTML file"
       ]
     }
@@ -114,19 +202,20 @@ dialog{width:min(440px,calc(100% - 32px));max-height:calc(100svh - 32px);overflo
 </head>
 <body>
 <div class="app" id="app">
-<header><div class="brand"><span aria-hidden="true">▶</span>Local Cinema</div><div class="header-actions"><button id="historyToggle" aria-controls="sidebar" aria-expanded="true">History</button><button class="primary" id="open">＋ Open video</button></div></header>
+<header><div class="brand"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" aria-hidden="true" focusable="false" viewBox="0 0 48 48"><!-- Icon from Arcticons by Donnnno - https://creativecommons.org/licenses/by-sa/4.0/ --><g fill="none" stroke="#c2b0ff" stroke-linecap="round" stroke-linejoin="round"><path d="M30.684 16.237c-.165 4.342 4.81 5.31 6.585 4.095c1.775-1.216 3.11-6.654-1.51-7.992c1.37-3.846-2.138-6.299-5.57-4.758c-3.165-4.738-6.726-3.42-8.122-.033"/><path d="M23.96 12.871c1.059-2.521-.392-6.407-4.964-5.202c-3.836-4.105-9.246.024-6.45 4.868c-4.709.622-4.52 8.44.017 8.469h22.303L32.571 43.5h-16.71l-2.168-22.143m6.824-.279l.63 22.397m7.143-22.461l-.984 22.405"/></g></svg>Local Cinema</div><div class="header-actions"><button id="historyToggle" aria-controls="sidebar" aria-expanded="true">History</button><button class="primary" id="open">＋ Open video</button></div></header>
 <div class="workspace">
 <main class="viewer">
-<div class="title-row"><div class="eyebrow">NOW SHOWING</div><h1 id="filename">Free local video player for your browser</h1><span id="details">Play MP4 and WebM files. No installation or uploads.</span></div>
+<div class="title-row"><div class="eyebrow">NOW SHOWING</div><h1 id="filename">Free local video player for your browser</h1><span id="details">Play local videos. Install on your device. No uploads.</span></div>
 <section class="theater" id="theater" aria-label="Video player">
-<div class="screen" id="dropzone"><video id="video" playsinline preload="metadata"></video><div id="seekFeedback" class="seek-feedback" aria-hidden="true"></div><div class="empty" id="empty"><div class="empty-icon" aria-hidden="true">▷</div><h2>Play a video from your computer</h2><p>Drop a local video here, or choose a file to start watching.</p><button class="primary" id="choose">Choose a video</button></div></div>
+<div class="screen" id="dropzone"><video id="video" playsinline preload="metadata"></video><div id="seekFeedback" class="seek-feedback" aria-hidden="true"></div><div class="empty" id="empty"><div class="empty-icon" aria-hidden="true">▷</div><h2>Play a video from your device</h2><p>Choose a video from your device, or drag one here.</p><button class="primary" id="choose">Choose a video</button><button class="install-link" id="install" hidden>Install on your device</button><span id="mobileReady" role="status"></span></div></div>
 <div class="controls"><div class="timeline"><span class="time" id="elapsed">0:00</span><input id="seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Seek video" disabled><span class="time" id="duration">0:00</span></div>
-<div class="control-row"><button class="icon" id="play" aria-label="Play" title="Play / pause (Space)" disabled><svg xmlns="http://www.w3.org/2000/svg" class="material-icon" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><!-- Material Symbols / Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M8 17.175V6.825q0-.425.3-.713t.7-.287q.125 0 .263.037t.262.113l8.15 5.175q.225.15.338.375t.112.475t-.112.475t-.338.375l-8.15 5.175q-.125.075-.262.113T9 18.175q-.4 0-.7-.288t-.3-.712"/></svg></button><button class="icon" id="back" aria-label="Rewind 10 seconds" title="Rewind 10 seconds (←)" disabled><svg xmlns="http://www.w3.org/2000/svg" class="material-icon" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><!-- Material Symbols / Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" transform="translate(24 0) scale(-1 1)" d="M8.882 20.374q-1.455-.626-2.542-1.713t-1.714-2.543T4 13t.626-3.118T6.34 7.34t2.542-1.714T12 5h.38l-1.31-1.311q-.166-.166-.163-.355t.162-.353q.165-.166.366-.159q.202.007.348.153l1.96 1.94q.242.243.242.566t-.243.565l-1.92 1.94q-.166.166-.357.163q-.192-.003-.357-.168q-.16-.166-.153-.364t.153-.344L12.38 6H12Q9.075 6 7.038 8.038T5 13t2.038 4.963T12 20t4.963-2.037T19 13q0-.213.143-.357t.357-.143t.357.143T20 13q0 1.664-.626 3.118t-1.714 2.543t-2.542 1.713T12 21t-3.118-.626"/><path fill="currentColor" d="M9.423 11.192h-.942q-.19 0-.316-.126t-.126-.316t.126-.316t.316-.126h1.385q.19 0 .316.126t.126.316v4.5q0 .19-.126.316t-.316.126t-.317-.126t-.126-.316zm3.27 4.5q-.426 0-.713-.287t-.288-.713v-3.384q0-.425.288-.713t.712-.287h1.77q.424 0 .712.287t.288.713v3.384q0 .425-.288.713t-.712.287zm.115-.884h1.538q.116 0 .173-.058t.058-.173v-3.154q0-.115-.058-.173t-.173-.058h-1.538q-.116 0-.174.058t-.057.173v3.154q0 .115.057.173q.058.058.174.058"/></svg></button><button class="icon" id="forward" aria-label="Forward 10 seconds" title="Forward 10 seconds (→)" disabled><svg xmlns="http://www.w3.org/2000/svg" class="material-icon" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><!-- Material Symbols / Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M8.882 20.374q-1.455-.626-2.542-1.713t-1.714-2.543T4 13t.626-3.118T6.34 7.34t2.542-1.714T12 5h.38l-1.31-1.311q-.166-.166-.163-.355t.162-.353q.165-.166.366-.159q.202.007.348.153l1.96 1.94q.242.243.242.566t-.243.565l-1.92 1.94q-.166.166-.357.163q-.192-.003-.357-.168q-.16-.166-.153-.364t.153-.344L12.38 6H12Q9.075 6 7.038 8.038T5 13t2.038 4.963T12 20t4.963-2.037T19 13q0-.213.143-.357t.357-.143t.357.143T20 13q0 1.664-.626 3.118t-1.714 2.543t-2.542 1.713T12 21t-3.118-.626"/><path fill="currentColor" d="M9.423 11.192h-.942q-.19 0-.316-.126t-.126-.316t.126-.316t.316-.126h1.385q.19 0 .316.126t.126.316v4.5q0 .19-.126.316t-.316.126t-.317-.126t-.126-.316zm3.27 4.5q-.426 0-.713-.287t-.288-.713v-3.384q0-.425.288-.713t.712-.287h1.77q.424 0 .712.287t.288.713v3.384q0 .425-.288.713t-.712.287zm.115-.884h1.538q.116 0 .173-.058t.058-.173v-3.154q0-.115-.058-.173t-.173-.058h-1.538q-.116 0-.174.058t-.057.173v3.154q0 .115.057.173q.058.058.174.058"/></svg></button><div class="volume"><button class="icon" id="mute" aria-label="Mute" title="Mute (M)"></button><input id="volume" aria-label="Volume" type="range" min="0" max="1" step="0.01" value="1"></div><div class="spacer"></div><button class="icon cc-button" id="loadSubtitles" type="button" aria-label="Load subtitles" title="Load subtitles (SRT or VTT)">CC</button><select id="captions" aria-label="Subtitle display" title="Subtitle display" disabled><option value="off">CC off</option><option value="on">CC on</option></select><select id="speed" aria-label="Playback speed" title="Playback speed"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select><button class="icon" id="pip" aria-label="Enter picture-in-picture" title="Picture-in-picture" disabled hidden></button><button class="icon" id="fullscreen" aria-label="Enter fullscreen" title="Fullscreen (F)"></button></div></div>
+<div class="control-row"><div class="transport-controls"><button class="icon" id="play" aria-label="Play" title="Play / pause (Space)" disabled><svg xmlns="http://www.w3.org/2000/svg" class="material-icon" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><!-- Material Symbols / Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M8 17.175V6.825q0-.425.3-.713t.7-.287q.125 0 .263.037t.262.113l8.15 5.175q.225.15.338.375t.112.475t-.112.475t-.338.375l-8.15 5.175q-.125.075-.262.113T9 18.175q-.4 0-.7-.288t-.3-.712"/></svg></button><button class="icon" id="back" aria-label="Rewind 10 seconds" title="Rewind 10 seconds (←)" disabled><svg xmlns="http://www.w3.org/2000/svg" class="material-icon" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><!-- Material Symbols / Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" transform="translate(24 0) scale(-1 1)" d="M8.882 20.374q-1.455-.626-2.542-1.713t-1.714-2.543T4 13t.626-3.118T6.34 7.34t2.542-1.714T12 5h.38l-1.31-1.311q-.166-.166-.163-.355t.162-.353q.165-.166.366-.159q.202.007.348.153l1.96 1.94q.242.243.242.566t-.243.565l-1.92 1.94q-.166.166-.357.163q-.192-.003-.357-.168q-.16-.166-.153-.364t.153-.344L12.38 6H12Q9.075 6 7.038 8.038T5 13t2.038 4.963T12 20t4.963-2.037T19 13q0-.213.143-.357t.357-.143t.357.143T20 13q0 1.664-.626 3.118t-1.714 2.543t-2.542 1.713T12 21t-3.118-.626"/><path fill="currentColor" d="M9.423 11.192h-.942q-.19 0-.316-.126t-.126-.316t.126-.316t.316-.126h1.385q.19 0 .316.126t.126.316v4.5q0 .19-.126.316t-.316.126t-.317-.126t-.126-.316zm3.27 4.5q-.426 0-.713-.287t-.288-.713v-3.384q0-.425.288-.713t.712-.287h1.77q.424 0 .712.287t.288.713v3.384q0 .425-.288.713t-.712.287zm.115-.884h1.538q.116 0 .173-.058t.058-.173v-3.154q0-.115-.058-.173t-.173-.058h-1.538q-.116 0-.174.058t-.057.173v3.154q0 .115.057.173q.058.058.174.058"/></svg></button><button class="icon" id="forward" aria-label="Forward 10 seconds" title="Forward 10 seconds (→)" disabled><svg xmlns="http://www.w3.org/2000/svg" class="material-icon" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><!-- Material Symbols / Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M8.882 20.374q-1.455-.626-2.542-1.713t-1.714-2.543T4 13t.626-3.118T6.34 7.34t2.542-1.714T12 5h.38l-1.31-1.311q-.166-.166-.163-.355t.162-.353q.165-.166.366-.159q.202.007.348.153l1.96 1.94q.242.243.242.566t-.243.565l-1.92 1.94q-.166.166-.357.163q-.192-.003-.357-.168q-.16-.166-.153-.364t.153-.344L12.38 6H12Q9.075 6 7.038 8.038T5 13t2.038 4.963T12 20t4.963-2.037T19 13q0-.213.143-.357t.357-.143t.357.143T20 13q0 1.664-.626 3.118t-1.714 2.543t-2.542 1.713T12 21t-3.118-.626"/><path fill="currentColor" d="M9.423 11.192h-.942q-.19 0-.316-.126t-.126-.316t.126-.316t.316-.126h1.385q.19 0 .316.126t.126.316v4.5q0 .19-.126.316t-.316.126t-.317-.126t-.126-.316zm3.27 4.5q-.426 0-.713-.287t-.288-.713v-3.384q0-.425.288-.713t.712-.287h1.77q.424 0 .712.287t.288.713v3.384q0 .425-.288.713t-.712.287zm.115-.884h1.538q.116 0 .173-.058t.058-.173v-3.154q0-.115-.058-.173t-.173-.058h-1.538q-.116 0-.174.058t-.057.173v3.154q0 .115.057.173q.058.058.174.058"/></svg></button><div class="volume"><button class="icon" id="mute" aria-label="Mute" title="Mute (M)"></button><input id="volume" aria-label="Volume" type="range" min="0" max="1" step="0.01" value="1"></div></div><div class="playback-options"><button class="icon cc-button" id="loadSubtitles" type="button" aria-label="Load subtitles" title="Load subtitles (SRT or VTT)">CC</button><select id="captions" aria-label="Subtitle display" title="Subtitle display" disabled><option value="off">CC off</option><option value="on">CC on</option></select><select id="speed" aria-label="Playback speed" title="Playback speed"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select><button class="icon" id="pip" aria-label="Enter picture-in-picture" title="Picture-in-picture" disabled hidden></button><button class="icon" id="fullscreen" aria-label="Enter fullscreen" title="Fullscreen (F)"></button></div></div></div>
 </section>
 <div class="foot"><p id="status" role="status">Local playback · No uploads</p><span class="shortcuts">SPACE play / pause &nbsp; · &nbsp; ← → skip &nbsp; · &nbsp; F fullscreen</span></div>
 </main>
-<aside id="sidebar" aria-label="Watch history"><div class="sidebar-heading"><h2>Watch history <span id="count"></span></h2><button id="clear">Clear</button></div><p class="sidebar-caption">Your recently opened videos</p><div id="history"></div><div class="sidebar-footer"><span id="storageNote">History stays in this browser; video files are not stored.</span><br><br>Local Cinema plays your videos without uploading them. Use speed controls, fullscreen and picture-in-picture where supported.<br><br>Download this HTML file for offline playback. Formats depend on browser codecs; history is saved in this browser. Reselect files after reloading to resume.</div></aside>
+<aside id="sidebar" aria-label="Watch history"><div class="sidebar-heading"><h2>Watch history <span id="count"></span></h2><button id="clear">Clear</button><button class="sidebar-close" id="historyClose" aria-label="Close watch history">×</button></div><p class="sidebar-caption">Your recently opened videos</p><div id="history"></div><div class="sidebar-footer"><button id="installHelp" hidden>Install Local Cinema</button><span id="offlineStatus" role="status"></span><br><span id="storageNote">History stays in this browser; video files are not stored.</span><br><br>Local Cinema plays your videos without uploading them. Use speed controls, fullscreen and picture-in-picture where supported.<br><br>Install Local Cinema on your device and reopen it offline once it is ready. You can also download this HTML file. Reselect videos after reopening to resume.</div></aside>
 </div></div>
+<dialog id="installDialog" aria-labelledby="installTitle"><h2 id="installTitle">Your own little cinema</h2><p>Install Local Cinema for a dedicated app window and offline playback. Your videos stay on your device.</p><p id="installInstructions">Use your browser’s <strong>Install app</strong> option. On iPhone or iPad, open Safari, tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>. On Mac, Safari offers <strong>File → Add to Dock</strong>. Options depend on your browser.</p><p>Open the app online once and wait for “Ready for offline use” before going offline. Choose your video again each time you reopen.</p><div class="dialog-actions"><button id="installClose" class="primary">Got it</button></div></dialog>
 <dialog id="relink"><h2>Did this video move out? 🍿</h2><p id="relinkText"></p><p>Your browser forgot its backstage pass. Choose the file again and we’ll pick up where you left off.</p><div class="dialog-actions"><button id="relinkCancel">Not now</button><button id="relinkChoose" class="primary">Find video</button></div></dialog>
 <input id="subtitleFile" type="file" accept=".srt,.vtt,text/vtt,application/x-subrip" hidden>
 <input id="file" type="file" accept="video/*,.mkv,.avi,.mov,.m4v,.webm,.mp4,.ogv,.mpeg,.mpg,.ts" hidden>
@@ -301,7 +390,7 @@ function openVideo(file) {
  $('seek').value=0;$('seek').disabled=true;$('elapsed').textContent='0:00';$('duration').textContent='0:00';
  for(const id of ['play','back','forward'])$(id).disabled=false;
  message('Loading video…');video.src=url;video.playbackRate=Number($('speed').value);renderHistory();
- if(matchMedia('(max-width:760px)').matches)setHistory(false);
+ if(compactLayout.matches)setHistory(false);
 }
 video.addEventListener('loadedmetadata',()=>{if(!current)return;const duration=video.duration;if(Number.isFinite(duration)&&duration>0){$('seek').max=duration;$('seek').disabled=false;video.currentTime=Math.min(current.position,Math.max(0,duration-.1));}sync();video.play().catch(()=>message('Ready — press play.'));});
 function sync(){const time=video.currentTime||0,duration=Number.isFinite(video.duration)?video.duration:0;if(!seeking)$('seek').value=time;$('elapsed').textContent=format(time);$('duration').textContent=format(duration);savePosition();}
@@ -336,14 +425,74 @@ async function fullscreen(){try{if(document.fullscreenElement)await document.exi
 $('fullscreen').onclick=fullscreen;video.ondblclick=fullscreen;document.addEventListener('fullscreenchange',()=>{$('fullscreen').setAttribute('aria-label',document.fullscreenElement?'Exit fullscreen':'Enter fullscreen');});
 for(const id of ['open','choose'])$(id).onclick=()=>{pendingRelink=null;$('file').click();};$('file').onchange=()=>{openVideo($('file').files[0]);$('file').value='';};
 window.addEventListener('dragover',e=>e.preventDefault());window.addEventListener('drop',e=>e.preventDefault());$('dropzone').ondragover=e=>{e.preventDefault();$('dropzone').classList.add('dragging');};$('dropzone').ondragleave=e=>{if(!$('dropzone').contains(e.relatedTarget))$('dropzone').classList.remove('dragging');};$('dropzone').ondrop=e=>{e.preventDefault();$('dropzone').classList.remove('dragging');openVideo(e.dataTransfer.files[0]);};
+const compactLayout = matchMedia('(max-width:1100px)');
+compactLayout.addEventListener('change', event => setHistory(!event.matches));
+$('historyClose').onclick = () => { setHistory(false); $('historyToggle').focus(); };
 function setHistory(show){$('app').classList.toggle('hide-history',!show);$('historyToggle').setAttribute('aria-expanded',String(show));}
-$('historyToggle').onclick=()=>setHistory($('app').classList.contains('hide-history'));setHistory(!matchMedia('(max-width:760px)').matches);
+$('historyToggle').onclick=()=>setHistory($('app').classList.contains('hide-history'));setHistory(!compactLayout.matches);
 $('clear').onclick=()=>{entries=[];pendingRelink=null;persistHistory(true);renderHistory();};
-document.addEventListener('keydown',e=>{if(current && $('theater').contains(e.target)) revealControls();if(e.ctrlKey||e.metaKey||e.altKey||e.target.closest('input,select,button,a,[contenteditable]'))return;if(e.code==='Space'){e.preventDefault();toggle();}else if(e.key==='ArrowLeft'){e.preventDefault();skip(-10);}else if(e.key==='ArrowRight'){e.preventDefault();skip(10);}else if(e.key.toLowerCase()==='m'){video.muted=!video.muted;}else if(e.key.toLowerCase()==='f'){fullscreen();}else if(e.key==='Escape'){if(matchMedia('(max-width:760px)').matches)setHistory(false);}});
+document.addEventListener('keydown',e=>{if(current && $('theater').contains(e.target)) revealControls();if(e.ctrlKey||e.metaKey||e.altKey||e.target.closest('input,select,button,a,[contenteditable]'))return;if(e.code==='Space'){e.preventDefault();toggle();}else if(e.key==='ArrowLeft'){e.preventDefault();skip(-10);}else if(e.key==='ArrowRight'){e.preventDefault();skip(10);}else if(e.key.toLowerCase()==='m'){video.muted=!video.muted;}else if(e.key.toLowerCase()==='f'){fullscreen();}else if(e.key==='Escape'){if(compactLayout.matches)setHistory(false);}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){savePosition();persistHistory(true);}});
 window.addEventListener('pagehide',e=>{savePosition();persistHistory(true);if(!e.persisted){if(url)URL.revokeObjectURL(url);if(subtitleURL)URL.revokeObjectURL(subtitleURL);}});
 loadHistory();
 renderHistory();
+// Keep the downloaded HTML player usable without a server.
+if (['https:', 'http:'].includes(location.protocol)) {
+ let installPrompt = null;
+ const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+ const android = /Android/i.test(navigator.userAgent);
+ if (ios) {
+  $('installInstructions').textContent = 'On iPhone or iPad, open this site in Safari. Tap Share (you may need to open the menu first), then Add to Home Screen. Enable Open as Web App if shown, then tap Add. If the action is missing, look under Edit Actions.';
+ } else if (android) {
+  $('installInstructions').textContent = 'On Android, open this site in Chrome. Tap the three-dot menu, then Add to Home screen → Install. If you are browsing inside another app, open this page in Chrome first.';
+ }
+ const offlineMessage = text => {
+  $('offlineStatus').textContent = text;
+  $('mobileReady').textContent = text;
+ };
+ offlineMessage('Preparing offline playback…');
+ const standalone = matchMedia('(display-mode: standalone)');
+ const syncInstall = () => {
+  const installed = standalone.matches || navigator.standalone === true;
+  $('install').hidden = installed;
+  $('installHelp').hidden = installed;
+ };
+ syncInstall();
+ standalone.addEventListener('change', syncInstall);
+ window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault(); installPrompt = event; syncInstall();
+ });
+ window.addEventListener('appinstalled', () => {
+  installPrompt = null; $('install').hidden = true; $('installHelp').hidden = true;
+ });
+ async function installApp() {
+  if (!installPrompt) { $('installDialog').showModal(); return; }
+  const prompt = installPrompt; installPrompt = null;
+  try { await prompt.prompt(); await prompt.userChoice; }
+  catch { $('installDialog').showModal(); }
+ }
+ $('install').onclick = installApp;
+ $('installHelp').onclick = installApp;
+ $('installClose').onclick = () => $('installDialog').close();
+ if ('serviceWorker' in navigator && window.isSecureContext) {
+  navigator.serviceWorker.register('./sw.js', {updateViaCache: 'none'}).then(registration => {
+   const showReady = () => { offlineMessage('Ready for offline use'); };
+   if (registration.active) showReady();
+   const watch = worker => {
+    if (!worker) return;
+    worker.addEventListener('statechange', () => {
+     if (worker.state === 'activated') showReady();
+     if (worker.state === 'installed' && registration.waiting) {
+      offlineMessage('Update ready. Close all Local Cinema tabs and windows, then reopen to use it.');
+     }
+    });
+   };
+   watch(registration.installing);
+   registration.addEventListener('updatefound', () => watch(registration.installing));
+   if (registration.waiting) offlineMessage('Update ready. Close all Local Cinema tabs and windows, then reopen to use it.');
+  }).catch(() => { offlineMessage('Offline setup unavailable. Connect and reopen to try again.'); });
+ } else { offlineMessage('Offline installation needs a supported browser and HTTPS.'); }
+}
 </script>
 </body>
 </html>

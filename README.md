@@ -8,7 +8,7 @@
 
 A small, free video player for files on your computer. Pick a video, make yourself comfortable, and let your browser do the playing.
 
-**No installation · No uploads · No external player libraries**
+**Install on your device · Watch offline · No video uploads**
 
 ---
 
@@ -46,7 +46,9 @@ Dedicated media players still have their place, especially for formats a browser
 - Keep a watch history with saved resume positions in this browser.
 - Use fullscreen and picture-in-picture where your browser supports them.
 - Enjoy a responsive interface with a collapsible history sidebar.
-- Download the single HTML file and play supported videos offline.
+- Install Local Cinema on your device and launch it in its own app window.
+- Reopen the player offline after its first successful online setup.
+- Download the single HTML file as another way to play supported videos offline.
 
 ## Getting started
 
@@ -54,7 +56,26 @@ Dedicated media players still have their place, especially for formats a browser
 
 Visit **[local-cinema.online](https://local-cinema.online/)** and click **Open video**. Choose a file from your device. The page plays it locally; the app does not upload your video.
 
-### Play offline
+### Install on your device
+
+Visit **[local-cinema.online](https://local-cinema.online/)** and choose **Install on your device** on the welcome screen, or **Install Local Cinema** in the history sidebar.
+
+- **Android Chrome:** tap **Install on your device**, or open Chrome’s three-dot menu → **Add to Home screen → Install**. If viewing inside another app, open the page in Chrome first.
+- **Desktop Chrome / Edge:** use the installation prompt or the browser’s **Install app** menu option.
+- **iPhone / iPad:** open the site in Safari, tap **Share**, then **Add to Home Screen**. Enable **Open as Web App** if shown, then tap **Add**.
+- **Mac Safari:** choose **File → Add to Dock**.
+
+The phone and tablet layouts group playback controls into rows that fit the player. Touch controls stay visible below the video, keeping the picture and subtitles clear. History opens as a closable overlay on screens up to 1100px wide. The page scrolls vertically on phones and tablets so the player, controls, and status stay reachable on short screens. The layout adapts when rotating the device, with safe spacing around notches and home indicators.
+
+Installation options depend on your browser and OS. You can always continue playing in the browser.
+
+Open the app online once and wait for **Ready for offline use** on the welcome screen or in the history sidebar. After that, launch it from your device to play local videos offline. The player caches its interface and app icons; it does not copy or upload your videos. Choose the video and any subtitles again after reopening. Clearing site data or browser storage eviction can remove the offline copy; reconnect to set it up again.
+
+Updates download when you open the app online. When **Update ready** appears, close all Local Cinema tabs and app windows, then reopen. Updates never force a reload during playback.
+
+Installation references: [Apple’s iPhone guide](https://support.apple.com/guide/iphone/iphea86e5236/ios) and [Google’s Android guide](https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid).
+
+### Download for offline use
 
 1. Download [`index.html`](index.html).
 2. Open it in a browser with JavaScript enabled.
@@ -96,7 +117,7 @@ Shortcuts work when a playback control or text input is not focused.
 
 Local Cinema saves up to 50 recent video entries and their resume positions in this browser. History survives page reloads on the same site and browser profile.
 
-Browsers do not let a web page keep a permanent handle to a video selected from your computer. After a reload, click a saved entry and you may see **“Did this video move out? 🍿”**. Choose **Find video** and select the original file to resume. This message also appears if you simply returned later; the browser forgets temporary file access even when the video never moved.
+The current file picker gives Local Cinema temporary access to the video you select. Installing the app does not make that access permanent. After a reload, click a saved entry and you may see **“Did this video move out? 🍿”**. Choose **Find video** and select the original file to resume. This message also appears if you simply returned later; the browser forgets temporary file access even when the video never moved.
 
 To reconnect a renamed file, select it from the prompt. The player checks its size and last-modified time before restoring the saved position. A different or modified file is not linked to that history entry. Choose **Open video** to play it as a new item.
 
@@ -108,7 +129,7 @@ Videos are played from local browser object URLs. Local Cinema does not upload, 
 
 Subtitle files are read locally and attached to the video for playback; they are not uploaded or saved in watch history. Select them again after reloading the page.
 
-All player code, styles, and icons are included in `index.html`. There are no external player libraries, remote fonts, analytics, or tracking scripts. The hosted page needs a connection to load; a downloaded copy of `index.html` can be opened offline.
+All playback code, styles, and control icons are included in `index.html`. The hosted app caches its interface with a service worker after an initial online visit, allowing later offline launches. A downloaded copy of `index.html` also works offline without installation. The deployment build optionally injects `analytics.local.html` when that local file exists. It is ignored by Git, so a fresh clone builds without analytics. The current local snippet uses Google Analytics; its external requests are excluded from the offline cache. The downloaded source HTML has no analytics tag.
 
 ## Video compatibility
 
@@ -116,9 +137,19 @@ Playback depends on the codecs supported by your browser and operating system. *
 
 Local Cinema does not convert video, add codecs, or stream internet video. It supports text subtitles in SRT and WebVTT (`.vtt`) formats; subtitle appearance and cue support depend on the browser. Picture-in-picture and fullscreen availability also depends on the browser.
 
+## Build and PWA maintenance
+
+Local analytics (`analytics.local.html`), Cloudflare state (`.wrangler/`), Wrangler configuration, environment files, and generated output are excluded by `.gitignore`. `robots.txt`, `sitemap.xml`, and promotional copy in `post.txt` are also ignored. They are not required to run the player; the build includes the search metadata only when present locally. Keep `_headers` in Git: the build uses it for PWA cache headers. To enable analytics on your own deployment, create `analytics.local.html` containing your analytics snippet before building.
+
+Run `npm run build` to generate `dist/` for Cloudflare Pages. The build copies the manifest, install icons, and cache headers, then versions `sw.js` using a hash of the deployed assets. Deploy the whole `dist/` directory together. `npm run deploy` builds and publishes it.
+
+Run `npm run test:pwa` to check the built assets, script syntax, offline routes, cache cleanup, and requests excluded from caching. These checks simulate the service worker; installation should also be tested on target devices.
+
+Service workers require HTTPS (or localhost for development). To check the production build locally, run `npm run build`, then `python3 -m http.server 8080 --directory dist` and open `http://localhost:8080`. Open once online, check offline readiness, switch the browser offline, and reload. Verify local playback, installation, and an update with an existing player window open. Preview the built directory so cache versions reflect source changes.
+
 ## Credits
 
-- **Popcorn favicon:** Arcticons by Donnnno, shared under [Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The icon is recolored lavender.
+- **Popcorn favicon, header logo, and install icons:** Arcticons by Donnnno, shared under [Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The icon is recolored lavender; install icons place it on a dark background. The adapted icon artwork in `icons/app.svg` is shared under the same CC BY-SA 4.0 license.
 - **Playback icons:** Material Symbols and Material Symbols Light by Google. See the [Material Design Icons license](https://github.com/google/material-design-icons/blob/master/LICENSE).
 
 Attribution comments are included with the embedded SVGs. These icon credits do not set a license for the rest of this project.
