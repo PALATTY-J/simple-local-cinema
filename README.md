@@ -2,7 +2,9 @@
 
 **Your videos. Your browser. Bring your own popcorn.**
 
-### <a href="https://local-cinema.online/" target="_blank" rel="noopener noreferrer">▶ Open Local Cinema · local-cinema.online</a>
+### [▶ Open Local Cinema · local-cinema.online](https://local-cinema.online/)
+
+*On GitHub, use ⌘-click (Mac) or Ctrl-click (Windows/Linux) to open it in a new tab.*
 
 A small, free video player for files on your computer. Pick a video, make yourself comfortable, and let your browser do the playing.
 
